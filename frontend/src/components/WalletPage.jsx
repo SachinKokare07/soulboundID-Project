@@ -10,6 +10,11 @@ const WalletPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isVerifying, setIsVerifying] = useState(false);
   const [verificationMessage, setVerificationMessage] = useState(null);
+  const [stream, setStream] = useState(null);
+  const [showCamera, setShowCamera] = useState(false);
+  
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     // Check for connected wallet session
@@ -624,7 +629,7 @@ const WalletPage = () => {
 
       <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 rounded-full mb-6 border border-gray-800">
             <span className="text-sm text-gray-300">Your Digital Identity Wallet</span>
             <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -638,6 +643,22 @@ const WalletPage = () => {
 
           <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
             Create a secure, blockchain-based identity wallet to manage your verifiable credentials and connect with platforms seamlessly.
+          </p>
+        </div>
+
+        {/* Connect Button Section - Moved to Top */}
+        <div className="text-center mb-16">
+          <button
+            onClick={() => navigate('/connect')}
+            className="bg-white text-black px-12 py-4 rounded-lg font-medium hover:bg-gray-100 transition-all transform hover:scale-105 duration-300 text-lg inline-flex items-center gap-3 shadow-2xl"
+          >
+            Connect Pera Wallet
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+          <p className="text-gray-400 text-sm mt-4 max-w-lg mx-auto">
+            Click to connect via QR code (desktop) or app redirect (mobile)
           </p>
         </div>
 
@@ -707,22 +728,6 @@ const WalletPage = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Connect Button Section */}
-        <div className="text-center">
-          <button
-            onClick={() => navigate('/connect')}
-            className="bg-white text-black px-12 py-4 rounded-lg font-medium hover:bg-gray-100 transition-all transform hover:scale-105 duration-300 text-lg inline-flex items-center gap-3 shadow-lg"
-          >
-            Connect Pera Wallet
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </button>
-          <p className="text-gray-400 text-sm mt-4 max-w-lg mx-auto">
-            Click to connect via QR code (desktop) or app redirect (mobile)
-          </p>
         </div>
       </div>
 
